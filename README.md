@@ -28,3 +28,6 @@ volumes:
   telegram-bot-server-data:
 
 ```
+In principle, this could have ended, input 
+ - `<host-ip>:8081/bot<bot-token>/getMe` - viewing basic information on the bot
+ -  `<host-ip>:8082` - viewing information on the server
