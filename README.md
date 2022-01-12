@@ -102,4 +102,39 @@ OpenSSH (v6)               ALLOW       Anywhere (v6)
 Nginx Full (v6)            ALLOW       Anywhere (v6)
 ```
 
+## Obtaining an SSL Certificate
+
+Let’s Encrypt is a certification authority (CA) that makes it easy to obtain and install free TLS / SSL certificates, allowing you to use encrypted HTTPS traffic on your web servers.
+
+### Installing Certbot
+
+`sudo apt install certbot python3-certbot-nginx`
+
 ### Obtaining an SSL Certificate
+
+`sudo certbot --nginx -d {sub-domain.your-domain-name.com}`
+
+### Checking Certbot Automatic Updates
+
+`sudo systemctl status certbot.timer`
+
+```
+Output
+● certbot.timer - Run certbot twice daily
+     Loaded: loaded (/lib/systemd/system/certbot.timer; enabled; vendor preset: enabled)
+     Active: active (waiting) since Mon 2020-05-04 20:04:36 UTC; 2 weeks 1 days ago
+    Trigger: Thu 2020-05-21 05:22:32 UTC; 9h left
+   Triggers: ● certbot.service
+```
+
+Чтобы протестировать процесс обновления, можно сделать запуск «вхолостую»:
+
+`sudo certbot renew --dry-run`
+
+If there are no errors, everything is fine. Certbot will renew your certificates when required and reload Nginx to activate the changes.
+
+Now you can test the server operation on a personal subdomain using a secure protocol:
+
+`{sub-domain.your-domain-name.com}/bot<bot-token>/getMe`
+
+If this manual was useful to you, you can thank me here <code> <b>--></b> [Mono Bank donate](https://send.monobank.com.ua/NNG8cy25) "</code> or here <code> <b>--></b> [TON donate](https://t.me/CryptoBot?start=IVzvtl4RU4q8) "</code>
